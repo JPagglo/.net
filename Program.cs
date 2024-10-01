@@ -1,13 +1,17 @@
+global using dotnet_rpg.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+// Adicionar serviços para controladores (API)
+builder.Services.AddControllers();
+
+// Adicionar suporte ao Swagger (documentação da API)
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configurar o pipeline de requisições HTTP
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -16,6 +20,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+// Mapeamento para controladores
+app.MapControllers();  // Esta linha é necessária para que o controlador funcione
+
+// Exemplo de endpoint com MapGet
 var summaries = new[]
 {
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
