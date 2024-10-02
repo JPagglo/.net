@@ -1,4 +1,5 @@
 global using dotnet_rpg.Models;
+global using dotnet_rpg.Services.CharacterService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,7 @@ builder.Services.AddControllers();
 // Adicionar suporte ao Swagger (documentação da API)
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<ICharacterService, CharacterService>();
 
 var app = builder.Build();
 
